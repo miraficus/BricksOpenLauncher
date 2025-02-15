@@ -1,5 +1,6 @@
 package `in`.evilcorp.bricksopenlauncher.overlaycontrols
 
+import android.annotation.SuppressLint
 import `in`.evilcorp.bricksopenlauncher.overlaycontrols.dependency.OverlayControlsNotificationManager
 import android.content.Context
 import android.content.Intent
@@ -88,6 +89,7 @@ class ControlsService : DaggerService() {
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun addOverlayControls() {
         val viewType = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             @Suppress("DEPRECATION")
@@ -118,7 +120,7 @@ class ControlsService : DaggerService() {
     private fun callHomeScreen() {
         val intent = Intent(Intent.ACTION_MAIN).apply {
             addCategory(Intent.CATEGORY_HOME)
-            setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
 
         if (intent.isResolvable(this)) {
