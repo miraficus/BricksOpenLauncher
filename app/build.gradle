@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 def generateSelfSignedCertificate(version){
@@ -58,11 +58,16 @@ def generateSelfSignedCertificate(version){
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "in.evilcorp.bricksopenlauncher"
         minSdkVersion 21
         targetSdkVersion 28
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     //TODO: Uncomment to enable generating of MirrorLink cert
